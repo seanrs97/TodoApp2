@@ -3,6 +3,9 @@ import Header from "./components/layout/Header";
 import Todos from "./components/Todos";
 import './App.css';
 
+
+// GO TO 59:30 IN THE REACT CRASH COURSE VIDEO
+
 class App extends Component {
   state = {
     todos: [
