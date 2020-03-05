@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
 import Header from "./components/layout/Header";
 import Todos from "./components/Todos";
+import AddToDo from "./components/AddToDo";
 import './App.css';
 
 
-// GO TO 59:30 IN THE REACT CRASH COURSE VIDEO
-
+// GO TO 1:13:30 IN THE REACT CRASH COURSE VIDEO
+  
 class App extends Component {
   state = {
     todos: [
       {
         id: 1,
         title: "Take out the trash",
-        completed: true
+        completed: false
       },
       {
         id: 2,
@@ -28,7 +29,7 @@ class App extends Component {
   }
 
   // Toggle Complete
-  markComplete = (id) => {
+  markComplete = (id) => {;
     this.setState({
       todos: this.state.todos.map(todo => {
         if(todo.id === id){
@@ -43,15 +44,28 @@ class App extends Component {
     this.setState({ todos: 
       [...this.state.todos.filter(todo => todo.id !== id)]})
   }
+
+  // Add Todo
+  addTodo = (title) => {
+    console.log(title);
+    const newTodo = {
+      id: 4,
+      title: title,
+      completed: false
+    }
+    this.setState({ todos: [...this.state.todos, newTodo]})
+  }
   render(){
     console.log(this.state.todos);
     return (
       <div className="App">
-        <h1> App  </h1>
-        <Header />
-        <Todos todos = {this.state.todos} 
-        markComplete = {this.markComplete}
-        delTodo = {this.delTodo}/>
+        <div className = "container">
+          <Header />
+          <AddToDo addTodo = {this.addTodo}/>
+          <Todos todos = {this.state.todos} 
+          markComplete = {this.markComplete}
+          delTodo = {this.delTodo}/>
+        </div>
       </div>
     );
   }
